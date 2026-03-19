@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "name": "Reddit Block Button",
+  "version": "0.1.1",
+  "description": "Hide posts and comments from blocked Reddit users.",
+  "permissions": [
+    "storage",
+    "alarms",
+    "tabs",
+    "contextMenus",
+    "*://*.reddit.com/*",
+    "*://reddit.com/*"
+  ],
+  "browser_action": {
+    "default_title": "Reddit Block Button"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "icons": {
+    "48": "icons/icon.svg"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.reddit.com/*", "*://reddit.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "applications": {
+    "gecko": {
+      "id": "reddit-block-button@local",
+      "strict_min_version": "109.0"
+    }
+  }
+}

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reddit Block Button - Options</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main class="page">
+      <h1>Reddit Block Button</h1>
+      <p class="subtitle">Manage your blocked users list.</p>
+      <p id="status" class="status" aria-live="polite"></p>
+
+      <section class="card">
+        <div class="row">
+          <button id="export-all" type="button">Export all data</button>
+          <button id="import-all" type="button" class="ghost">Import all data</button>
+          <button id="clear-all-data" type="button" class="ghost">Clear all data</button>
+          <input id="import-all-file" type="file" accept=".json" hidden />
+        </div>
+        <p class="note">Exports and imports your full extension settings, including users, subreddits, keywords, and sweep settings.</p>
+      </section>
+
+      <form id="add-form" class="card">
+        <label for="username">Add a username</label>
+        <div class="row">
+          <input id="username" name="username" type="text" placeholder="u/exampleuser" autocomplete="off" />
+          <button type="submit">Add</button>
+        </div>
+      </form>
+
+      <form id="add-hide-keyword-form" class="card">
+        <label for="hide-keyword">Add a hide-only keyword or phrase</label>
+        <div class="row">
+          <input id="hide-keyword" name="hide-keyword" type="text" placeholder="keyword or phrase" autocomplete="off" />
+          <button id="hide-keyword-regex-toggle" type="button" class="ghost">Regex off</button>
+          <button type="submit">Add</button>
+        </div>
+        <p class="note">Posts matching this list are hidden</p>
+      </form>
+
+      <section class="card">
+        <div class="row space-between">
+          <h2>Hide-only keywords</h2>
+          <button id="hide-keyword-clear" type="button" class="ghost">Clear all</button>
+        </div>
+        <p id="hide-keyword-empty" class="empty">No hide-only keywords yet.</p>
+        <ul id="hide-keyword-list" class="list"></ul>
+      </section>
+
+      <form id="add-aggressive-keyword-form" class="card">
+        <label for="aggressive-keyword">Add keywords THAT AUTO BLOCK USERS that say them</label>
+        <div class="row">
+          <input
+            id="aggressive-keyword"
+            name="aggressive-keyword"
+            type="text"
+            placeholder="keyword or phrase"
+            autocomplete="off"
+          />
+          <button id="aggressive-keyword-regex-toggle" type="button" class="ghost">Regex off</button>
+          <button type="submit">Add</button>
+        </div>
+        <p class="note">Posts matching this list are hidden and their author is automatically blocked.</p>
+      </form>
+
+      <section class="card">
+        <div class="row space-between">
+          <h2>Auto-Block Users keywords</h2>
+          <button id="aggressive-keyword-clear" type="button" class="ghost">Clear all</button>
+        </div>
+        <p id="aggressive-keyword-empty" class="empty">No aggressive keywords yet.</p>
+        <ul id="aggressive-keyword-list" class="list"></ul>
+      </section>
+
+      <form id="add-sub-form" class="card">
+        <label for="subreddit">Add a subreddit to auto-block</label>
+        <div class="row">
+          <input id="subreddit" name="subreddit" type="text" placeholder="r/example" autocomplete="off" />
+          <button type="submit">Add</button>
+        </div>
+      </form>
+
+      <section class="card">
+        <div class="row space-between">
+          <h2>Auto-block subreddits</h2>
+          <button id="sub-clear" type="button" class="ghost">Clear all</button>
+        </div>
+        <p id="sub-empty" class="empty">No subreddits yet.</p>
+        <ul id="sub-list" class="list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Auto-sweep blocked subreddits (WiFi Data Heavy)</h2>
+        <label class="row toggle">
+          <input id="auto-sweep" type="checkbox" />
+          <span>Open each post in a background tab, auto-block commenters, then close it.</span>
+        </label>
+        <label for="sweep-delay" class="label-inline">Delay between posts (seconds)</label>
+        <input id="sweep-delay" type="number" min="1" max="30" step="1" value="3" />
+        <p class="note">This only runs on subreddits in your auto-block list.</p>
+      </section>
+
+
+      <section class="card">
+        <div class="row space-between">
+          <h2>Blocked users</h2>
+          <button id="clear" type="button" class="ghost">Clear all</button>
+        </div>
+        <div class="row">
+          <button id="export-users" type="button" class="ghost">Export users</button>
+          <button id="import-users" type="button" class="ghost">Import users</button>
+          <input id="import-file" type="file" accept=".json,.txt" hidden />
+          <span id="import-status" class="note"></span>
+        </div>
+        <p id="empty" class="empty">No blocked users yet.</p>
+        <ul id="list" class="list"></ul>
+      </section>
+
+      <p class="note">Usernames and subreddits are stored locally in your browser storage.</p>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>
